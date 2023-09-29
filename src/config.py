@@ -1,8 +1,11 @@
 import os
 import logging
+import asyncio
 
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.mongo import MongoStorage
+from pymongo.collection import Collection
+from motor.motor_asyncio import AsyncIOMotorClient
 from dotenv import load_dotenv
 
 
@@ -22,3 +25,8 @@ DB_NAME = "hrbot"
 bot = Bot(TOKEN, parse_mode="HTML")
 dp = Dispatcher(bot, storage=MongoStorage(uri=MONGO_URL, db_name=DB_NAME))
 logger = logging.getLogger("bot")
+
+mongo_client = AsyncIOMotorClient(MONGO_URL)
+mongo_client.get_io_loop = asyncio.get_running_loop
+db: Collection = mongo_client[DB_NAME]
+ratings_db = db["rating"]
