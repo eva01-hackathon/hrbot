@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: ./Dockerfile
     container_name: hr-bot
+    depends_on:
+      - mongo
   mongo:
     restart: always
     image: mongo:latest
