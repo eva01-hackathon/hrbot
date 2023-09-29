@@ -1,0 +1,21 @@
+version: "3"
+services:
+  prod:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: hr-bot
+  mongo:
+    restart: always
+    image: mongo:latest
+    container_name: hr-bot-mongo
+    env_file:
+      - .env
+    ports:
+      - "${MONGO_PORT}:${MONGO_PORT}"
+    volumes:
+      - mongo-data:/data/db
+volumes:
+  mongo-data:
+    driver: local
