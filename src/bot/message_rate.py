@@ -15,7 +15,8 @@ rate_buttons = types.InlineKeyboardMarkup(2).add(
 
 
 async def rate(query: types.CallbackQuery, liked: bool) -> None:
-    question = query.message.reply_to_message.text
+    reply = query.message.reply_to_message
+    question = reply.text if reply else ""
     await ratings_db.insert_one({
         "answer": query.message.text,
         "question": question,
