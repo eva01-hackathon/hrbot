@@ -8,6 +8,10 @@ services:
     container_name: hr-bot
     depends_on:
       - mongo
+    volumes:
+      - type: bind
+        source: ./model-q4_K.gguf
+        target: /model-q4_K.gguf
   mongo:
     restart: always
     image: mongo:latest
