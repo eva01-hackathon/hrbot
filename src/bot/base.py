@@ -1,10 +1,11 @@
-from aiogram import types
+from aiogram import types, Bot
 
-from config import dp
+from config import dp, bot 
 from .message_rate import rate_buttons
 
 
 async def reply(m: types.Message, text: str) -> types.Message:
+    await m.answer_chat_action(types.ChatActions.TYPING)
     return await m.reply(text, reply_markup=rate_buttons)
 
 

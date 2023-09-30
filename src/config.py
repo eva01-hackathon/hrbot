@@ -1,6 +1,7 @@
 import os
 import logging
 import asyncio
+from concurrent.futures import ThreadPoolExecutor
 
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.mongo import MongoStorage
@@ -30,3 +31,5 @@ mongo_client = AsyncIOMotorClient(MONGO_URL)
 mongo_client.get_io_loop = asyncio.get_running_loop
 db: Collection = mongo_client[DB_NAME]
 ratings_db = db["rating"]
+
+global_executor = ThreadPoolExecutor(max_workers=5)
