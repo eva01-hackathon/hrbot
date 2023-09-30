@@ -32,4 +32,4 @@ mongo_client.get_io_loop = asyncio.get_running_loop
 db: Collection = mongo_client[DB_NAME]
 ratings_db = db["rating"]
 
-global_executor = ThreadPoolExecutor(max_workers=5)
+global_executor = ThreadPoolExecutor(max_workers=1)

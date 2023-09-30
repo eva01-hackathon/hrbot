@@ -38,10 +38,11 @@ snapshot_download(repo_id=repo_name, local_dir=".", allow_patterns=model_name)
 
 model = Llama(
     model_path=model_name,
-    n_ctx=4096,
+    n_ctx=2048,
     n_parts=1,
-    f16_kv=True,
-    verbose=True,
+    n_gqa=8,
+    # f16_kv=True,
+    # verbose=True,
 )
 
 max_new_tokens = 1500
