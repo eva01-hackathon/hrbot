@@ -4,3 +4,4 @@ pymongo
 python-dotenv
 llama-cpp-python
 huggingface-hub
+qdrant-client
